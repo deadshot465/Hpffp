@@ -2,11 +2,15 @@ module Main where
 
 import Prelude
 
-import Lib
 import qualified Ch10
+import qualified Ch11
 
-main :: IO ()
-main = do
+readNumber :: IO Integer
+readNumber = do
+  getLine >>= \s -> pure (read s :: Integer)
+
+runCh10 :: IO ()
+runCh10 = do
   print $ Ch10.mostRecent Ch10.theDatabase
   print Ch10.first20Fibs
   print Ch10.lessThan100Fibs
@@ -29,3 +33,21 @@ main = do
   print $ Ch10.myMinimumBy (\_ _ -> GT) [1..10]
   print $ Ch10.myMinimumBy (\_ _ -> LT) [1..10]
   print $ Ch10.myMinimumBy compare [1..10]
+
+runCh11 :: IO ()
+runCh11 = do
+  print Ch11.allProgrammers
+  let t1 = Ch11.insert' 0 Ch11.Leaf
+  let t2 = Ch11.insert' 3 t1
+  let t3 = Ch11.insert' 5 t2
+  print t1
+  print t2
+  print t3
+  Ch11.mapOkay
+  Ch11.testPreorder
+  Ch11.testInorder
+  Ch11.testPostorder
+
+main :: IO ()
+main = do
+  runCh11
