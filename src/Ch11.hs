@@ -2,6 +2,8 @@
 module Ch11 where
 
 import Prelude
+import Data.Char (toUpper)
+import qualified Data.Text as T
 
 data OperatingSystem
   = GnuPlusLinux
@@ -113,3 +115,18 @@ testPostorder =
 
 foldTree :: (a -> b -> b) -> b -> BinaryTree a -> b
 foldTree f acc = foldr f acc . preorder
+
+isSubseqOf :: Eq a => [a] -> [a] -> Bool
+isSubseqOf [] _ = True
+isSubseqOf _ [] = False
+isSubseqOf t@(x : xs) (y : ys) | x == y = isSubseqOf xs ys
+                               | otherwise = isSubseqOf t ys
+
+capitalizeWords :: String -> [(String, String)]
+capitalizeWords = fmap (\s@(x : xs) -> (s, toUpper x : xs)) . words
+
+capitalizeWord :: String -> String
+capitalizeWord [] = ""
+capitalizeWord (x : xs) = toUpper x : xs
+
+capitalizeParagraph = 0

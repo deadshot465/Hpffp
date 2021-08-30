@@ -4,6 +4,8 @@ import Prelude
 
 import qualified Ch10
 import qualified Ch11
+import qualified Cipher
+import Data.Char (chr, ord)
 
 readNumber :: IO Integer
 readNumber = do
@@ -47,6 +49,17 @@ runCh11 = do
   Ch11.testPreorder
   Ch11.testInorder
   Ch11.testPostorder
+  print $ Cipher.encrypt 27 "ABCD"
+  print $ Cipher.vigenereEncrypt "ALLY" "MEET AT DAWN"
+  print $ Ch11.isSubseqOf "blah" "blahwoot"
+  print $ Ch11.isSubseqOf "blah" "wootblah"
+  print $ Ch11.isSubseqOf "blah" "wboloath"
+  print $ Ch11.isSubseqOf "blah" "wootbla"
+  print $ Ch11.isSubseqOf "blah" "halbwoot"
+  print $ Ch11.isSubseqOf "blah" "blawhoot"
+  print $ Ch11.capitalizeWords "hello world"
+  print $ Ch11.capitalizeWord "Chortle"
+  print $ Ch11.capitalizeWord "chortle"
 
 main :: IO ()
 main = do
