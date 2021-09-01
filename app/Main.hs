@@ -60,6 +60,7 @@ runCh11 = do
   print $ Ch11.capitalizeWords "hello world"
   print $ Ch11.capitalizeWord "Chortle"
   print $ Ch11.capitalizeWord "chortle"
+  print $ Ch11.capitalizeParagraph "blah. woot ha."
 
 main :: IO ()
 main = do

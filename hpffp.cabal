@@ -29,6 +29,7 @@ library
       Ch11
       Cipher
       Lib
+      Phone
   other-modules:
       Paths_hpffp
   hs-source-dirs:

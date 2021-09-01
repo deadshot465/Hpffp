@@ -4,6 +4,7 @@ module Ch11 where
 import Prelude
 import Data.Char (toUpper)
 import qualified Data.Text as T
+import Data.List (intercalate)
 
 data OperatingSystem
   = GnuPlusLinux
@@ -127,6 +128,11 @@ capitalizeWords = fmap (\s@(x : xs) -> (s, toUpper x : xs)) . words
 
 capitalizeWord :: String -> String
 capitalizeWord [] = ""
-capitalizeWord (x : xs) = toUpper x : xs
+capitalizeWord (x : xs) | x == ' ' = ' ' : capitalizeWord xs
+                        | otherwise = toUpper x : xs
 
-capitalizeParagraph = 0
+capitalizeParagraph :: String -> String
+capitalizeParagraph paragraph =
+  intercalate "."
+  $ capitalizeWord . T.unpack
+  <$> T.splitOn (T.pack ".") (T.pack paragraph)
