@@ -6,6 +6,7 @@ import qualified Ch10
 import qualified Ch11
 import qualified Cipher
 import Data.Char (chr, ord)
+import qualified Phone
 
 readNumber :: IO Integer
 readNumber = do
@@ -61,6 +62,12 @@ runCh11 = do
   print $ Ch11.capitalizeWord "Chortle"
   print $ Ch11.capitalizeWord "chortle"
   print $ Ch11.capitalizeParagraph "blah. woot ha."
+  print Phone.convertedConvo
+  print $ Phone.cellPhonesDead Phone.daPhone "The phone has run out of battery"
+  print $ Phone.fingerTaps <$> Phone.convertedConvo
+  print $ Phone.mostPopularLetter <$> Phone.convo
+  print $ Phone.coolestLtr Phone.convo
+  print $ Phone.coolestWord Phone.convo
 
 main :: IO ()
 main = do
