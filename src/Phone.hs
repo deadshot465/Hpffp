@@ -1,3 +1,4 @@
+{-# LANGUAGE PartialTypeSignatures #-}
 module Phone where
 
 import Prelude
@@ -72,8 +73,7 @@ countLetters s c = (c, length $ filter (== c) s)
 
 mostPopularLetter :: String -> Char
 mostPopularLetter s =
-  fst $ maximumBy (\(_, a) (_, b) -> compare a b)
-  $ nub $ countLetters s
+  dedupAndGetMax $ countLetters s
   <$> (toLower <$> filter (/= ' ') s)
 
 coolestLtr :: [String] -> Char
@@ -81,7 +81,9 @@ coolestLtr = mostPopularLetter . concat
 
 coolestWord :: Foldable t => t String -> String
 coolestWord s =
-  fst $ maximumBy (\(_, a) (_, b) -> compare a b)
-  $ nub $ countLetters lowerWords <$> lowerWords
+  dedupAndGetMax $ countLetters lowerWords <$> lowerWords
   where
     lowerWords = fmap toLower <$> concatMap words s
+
+dedupAndGetMax :: Eq a => [(a, Int)] -> a
+dedupAndGetMax = fst . maximumBy (\(_, a) (_, b) -> compare a b) . nub

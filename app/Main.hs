@@ -6,6 +6,7 @@ import qualified Ch10
 import qualified Ch11
 import qualified Cipher
 import Data.Char (chr, ord)
+import qualified HuttonsRazor
 import qualified Phone
 
 readNumber :: IO Integer
@@ -68,6 +69,13 @@ runCh11 = do
   print $ Phone.mostPopularLetter <$> Phone.convo
   print $ Phone.coolestLtr Phone.convo
   print $ Phone.coolestWord Phone.convo
+  print $ HuttonsRazor.eval (HuttonsRazor.Add (HuttonsRazor.Lit 1) (HuttonsRazor.Lit 9001))
+  print $ HuttonsRazor.printExpr (HuttonsRazor.Add (HuttonsRazor.Lit 1) (HuttonsRazor.Lit 9001))
+  let a1 = HuttonsRazor.Add (HuttonsRazor.Lit 9001) (HuttonsRazor.Lit 1)
+  let a2 = HuttonsRazor.Add a1 (HuttonsRazor.Lit 20001)
+  let a3 = HuttonsRazor.Add (HuttonsRazor.Lit 1) a2
+  print $ HuttonsRazor.printExpr a3
+  pure ()
 
 main :: IO ()
 main = do

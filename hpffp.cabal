@@ -28,6 +28,7 @@ library
       Ch10
       Ch11
       Cipher
+      HuttonsRazor
       Lib
       Phone
   other-modules:
