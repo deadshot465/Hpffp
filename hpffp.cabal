@@ -27,6 +27,7 @@ library
   exposed-modules:
       Ch10
       Ch11
+      Ch12
       Cipher
       HuttonsRazor
       Lib

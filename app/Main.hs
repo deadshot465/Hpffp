@@ -4,6 +4,7 @@ import Prelude
 
 import qualified Ch10
 import qualified Ch11
+import qualified Ch12
 import qualified Cipher
 import Data.Char (chr, ord)
 import qualified HuttonsRazor
@@ -77,6 +78,31 @@ runCh11 = do
   print $ HuttonsRazor.printExpr a3
   pure ()
 
+runCh12 :: IO ()
+runCh12 = do
+  print $ Ch12.replaceThe "the cow loves us"
+  print $ Ch12.countTheBeforeVowel "the cow"
+  print $ Ch12.countTheBeforeVowel "the evil cow"
+  print $ Ch12.countVowels "the cow"
+  print $ Ch12.countVowels "Mikolajczak"
+  print $ Ch12.natToInteger Ch12.Zero
+  print $ Ch12.natToInteger (Ch12.Succ Ch12.Zero)
+  print $ Ch12.natToInteger (Ch12.Succ $ Ch12.Succ Ch12.Zero)
+  print $ Ch12.integerToNat 0
+  print $ Ch12.integerToNat 1
+  print $ Ch12.integerToNat 2
+  print $ Ch12.integerToNat (-1)
+  print $ Ch12.catMaybes [Just 1, Nothing, Just 2]
+  print $ Ch12.catMaybes (replicate 3 Nothing :: [Maybe ()])
+  print $ Ch12.flipMaybe [Just 1, Just 2, Just 3]
+  print $ Ch12.flipMaybe [Just 1, Nothing, Just 3]
+  print $ Ch12.lefts' [Left 1, Left 2, Right 3, Left 4, Right 5, Right 6, Left 7]
+  print $ Ch12.rights' [Left 1, Left 2, Right 3, Left 4, Right 5, Right 6, Left 7]
+  print $ take 10 $ Ch12.myIterate (+ 1) 0
+  print $ take 10 $ Ch12.myUnfoldr (\b -> Just (b, b + 1)) 0
+  print $ take 10 $ Ch12.betterIterate (+ 1) 0
+  pure ()
+
 main :: IO ()
 main = do
-  runCh11
+  runCh12
