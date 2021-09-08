@@ -101,6 +101,10 @@ runCh12 = do
   print $ take 10 $ Ch12.myIterate (+ 1) 0
   print $ take 10 $ Ch12.myUnfoldr (\b -> Just (b, b + 1)) 0
   print $ take 10 $ Ch12.betterIterate (+ 1) 0
+  print $ Ch12.treeBuild 0
+  print $ Ch12.treeBuild 1
+  print $ Ch12.treeBuild 2
+  print $ Ch12.treeBuild 3
   pure ()
 
 main :: IO ()

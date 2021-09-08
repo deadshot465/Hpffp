@@ -1,6 +1,7 @@
 module Ch12 where
 
 import Prelude
+import qualified Ch11
 import Data.Char (isUpper, toLower)
 
 notThe :: [Char] -> Maybe [Char]
@@ -116,3 +117,11 @@ myUnfoldr f x = case f x of
 
 betterIterate :: (a -> a) -> a -> [a]
 betterIterate f = myUnfoldr (\b -> Just (b, f b))
+
+unfoldTree :: (a -> Maybe (a, b, a)) -> a -> Ch11.BinaryTree b
+unfoldTree f x = case f x of
+  Nothing -> Ch11.Leaf
+  Just (a, b, c) -> Ch11.Node (unfoldTree f a) b (unfoldTree f c)
+
+treeBuild :: (Eq b, Num b) => b -> Ch11.BinaryTree b
+treeBuild n = unfoldTree (\x -> if x == n then Nothing else Just (x + 1, x, x + 1)) 0
